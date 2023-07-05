@@ -1,0 +1,121 @@
+
+//----------------------------------------------------------
+- /tourney/{id}
+GET get all user and status
+{
+    "settings": {
+        "match_settings": "RR/Swiss",
+        "rounds": 3
+    },
+    "participant": [
+        {
+            "userid" : "xxxxxxxxxx1"
+        },
+        {
+            "userid" : "xxxxxxxxxx2"
+        },
+        {
+            "userid" : "xxxxxxxxxx3"
+        },
+        {
+            "userid" : "xxxxxxxxxx4"
+        }
+    ]
+}
+POST set match setting
+{
+    "match_settings": "RR/Swiss",
+    "rounds": 3
+}
+
+PUT add user to tournament
+{
+    "userid" : "xxxxxxxxxx",
+    "status" : "added"
+}
+
+DEL remove user from tournament
+{
+    "userid" : "xxxxxxxxxx3",
+    "status" : "deleted"
+}
+
+
+//----------------------------------------------------------
+- /tourney/{id}/match
+GET show matches and round and status and setting
+{
+    "settings": {
+        "match_settings": "RR/Swiss",
+        "rounds": 3
+    },
+    "rounds": [
+        {
+            "id": 1,
+            "status": 1, // status 0 = not started, 1 = started
+            "matches": [
+                {
+                    "match_id": 111111,
+                    "winner": "uid1",
+                    "players": [
+                        "uid1",
+                        "uid2"
+                    ]
+                },
+                {
+                    "match_id": 111112,
+                    "winner": "uid2",
+                    "players": [
+                        "uid3",
+                        "uid4"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "status": 0,
+            "matches": []
+        }
+    ]
+}
+
+PUT start round 1
+{
+    "id": 1,
+    "status": 1, // status 0 = not started, 1 = started
+    "matches": [
+        {
+            "match_id": 111111,
+            "players": [
+                "uid1",
+                "uid2"
+            ]
+        },
+        {
+            "match_id": 111112,
+            "players": [
+                "uid3",
+                "uid4"
+            ]
+        }
+    ]
+}
+
+POST change score
+{
+    "match_id": 111111,
+    "winner": "uid1"
+}
+
+DEL rollback to round 1 
+{
+    "settings": {
+        "match_settings": "RR/Swiss",
+        "rounds": 3
+    },
+    "rounds": []
+}
+
+
+//----------------------------------------------------------
