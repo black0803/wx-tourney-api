@@ -31,6 +31,7 @@ POST set match setting
 PUT add user to tournament
 {
     "userid" : "xxxxxxxxxx",
+    "deckid" : "xxxxxxxxxx",
     "status" : "added"
 }
 
@@ -47,7 +48,8 @@ GET show matches and round and status and setting
 {
     "settings": {
         "match_settings": "RR/Swiss",
-        "rounds": 3
+        "rounds": 3,
+        "allow_deck_change": 0 // 0 = not allowed, 1 = allowed
     },
     "rounds": [
         {
@@ -80,7 +82,7 @@ GET show matches and round and status and setting
     ]
 }
 
-PUT start round 1
+PUT start round
 {
     "id": 1,
     "status": 1, // status 0 = not started, 1 = started
@@ -119,3 +121,67 @@ DEL rollback to round 1
 
 
 //----------------------------------------------------------
+- /user/{id}
+GET show user data
+{
+    "id": "id",
+    "nickname": "name",
+    "win": 0,
+    "lose": 0,
+    "deck": ["deckid1", "deckid2"],
+    "matches": ["match1", "match2"] // reference by ID - also, latest 5 matches
+}
+
+POST change user data
+{
+    "nickname": "newnickname",
+    "password": ""
+}
+
+DEL delete user data
+{
+    "id": "id",
+    "nickname": "nickname",
+    "status": "deleted"
+}
+
+//----------------------------------------------------------
+- /user/{id}/deck
+GET show all deck
+{
+    [
+        "deck_id":"xxxx",
+        "center": "Yuzuki",
+        "assist": ["assist1", "assist2"],
+        "lrig_deck": [
+            {
+                "name": "name",
+                "type": "PI/LRIG/Re",
+                "qty": 1,
+                "wx_link": "fandom_url"
+            },
+            {
+                "name": "name",
+                "type": "PI/LRIG/Re",
+                "qty": 1,
+                "wx_link": "fandom_url"
+            }
+        ],
+        "main_deck": [
+            {
+                "name": "name",
+                "type": "Spell/Signi",
+                "qty": 4,
+                "lifeburst": 0, // 0 = no, 1 = yes
+                "wx_link": "fandom_url"
+            }, 
+            {
+                "name": "name",
+                "type": "Spell/Signi",
+                "qty": 4,
+                "lifeburst": 1, // 0 = no, 1 = yes
+                "wx_link": "fandom_url"
+            }          
+        ]
+    ]
+}
