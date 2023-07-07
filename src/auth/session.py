@@ -35,7 +35,7 @@ def login():
     access_token = create_access_token(identity=username, fresh=True)
     refresh_token = create_refresh_token(identity=username)
 
-    # store token to DB for TTL
+    # store token to cookies
     # ------------------ insert code here ------------------
 
     # ------------------- code ends here -------------------

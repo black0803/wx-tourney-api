@@ -9,10 +9,6 @@ from app import app
 def show_tournaments():
     return "success"
 
-@app.post('/tournament')
-def change_tournament(): #belum kepikiran apa yg diganti
-    return "success"
-
 @app.put('/tournament')
 def create_new_tournament():
     return "success"
