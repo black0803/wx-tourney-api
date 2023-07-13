@@ -1,21 +1,20 @@
-import sys
-sys.path.append('..')
+from flask import Blueprint
 
-from app import app
+user_deck = Blueprint('user_deck', __name__)
 
 # endpoint /user/<id>/deck
-@app.get('/user/<id>/deck')
+@user_deck.get('/user/<id>/deck')
 def list_user_deck(id=None):
     return id + "deck"
 
-@app.post('/user/<id>/deck')
+@user_deck.post('/user/<id>/deck')
 def update_user_deck(id=None):
     return id
 
-@app.put('/user/<id>/deck')
+@user_deck.put('/user/<id>/deck')
 def create_user_deck(id=None):
     return id
 
-@app.delete('/user/<id>/deck')
+@user_deck.delete('/user/<id>/deck')
 def delete_deck(id=None):
     return id

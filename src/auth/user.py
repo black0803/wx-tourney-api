@@ -1,17 +1,16 @@
-import sys
-sys.path.append('..')
+from flask import Blueprint, jsonify, request
 
-from app import app
+user_data = Blueprint('user_data', __name__)
 
 # endpoint /user/<id>
-@app.get('/user/<id>')
+@user_data.get('/user/<id>')
 def user_info(id=None):
     return id
 
-@app.post('/user/<id>')
+@user_data.post('/user/<id>')
 def update_user_info(id=None):
     return id
 
-@app.delete('/user/<id>')
+@user_data.delete('/user/<id>')
 def delete_user(id=None):
     return id

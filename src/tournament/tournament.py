@@ -1,19 +1,18 @@
-import sys
-sys.path.append('..')
+from flask import Blueprint
 
-from app import app
+tournaments = Blueprint('tournaments', __name__)
 
 
 # endpoint /tournament
-@app.get('/tournament')
+@tournaments.get('/tournament')
 def show_tournaments():
     return "success"
 
-@app.put('/tournament')
+@tournaments.put('/tournament')
 def create_new_tournament():
     return "success"
 
-@app.delete('/tournament')
+@tournaments.delete('/tournament')
 def delete_tournament():
     return "success"
 
