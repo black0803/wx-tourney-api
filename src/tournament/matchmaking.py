@@ -20,18 +20,18 @@ def reset(id=None):
     return id
 
 # endpoint /user/<id>/match/{id}
-@app.get('/tournament/<id>/match')
+@matchmaking.get('/tournament/<id>/match')
 def show_matchmaking(id=None):
     return id + "match"
 
-@app.post('/tournament/<id>/match')
+@matchmaking.post('/tournament/<id>/match')
 def update_score(id=None):
     return id
 
-@app.put('/tournament/<id>/match')
+@matchmaking.put('/tournament/<id>/match')
 def start_round(id=None):
     return id
 
-@app.delete('/tournament/<id>/match')
+@matchmaking.delete('/tournament/<id>/match')
 def reset(id=None):
     return id
